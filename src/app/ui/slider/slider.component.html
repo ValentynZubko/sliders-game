@@ -1,0 +1,8 @@
+<div class="parent">
+    <div class="wrapper">
+        <input type="range" min="0" max="100" value="0" [disabled]="enabled ? null : 'disabled'" (input)="changeValue(+sliderView.value)" #sliderView />
+    </div>
+</div>
+<div class="sliderValue">
+    <label>{{sliderValue}}</label>
+</div>
