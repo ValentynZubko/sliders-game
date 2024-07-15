@@ -5,7 +5,7 @@
 </div>
 <div class="buttons">
     <div class="button">
-        <button [disabled]="isGameOver" (click)="calculate()">GUESS!</button>
+        <button [disabled]="isGameOver" (click)="calculate()" class="btnGuess">GUESS!</button>
     </div>
     <div class="result">
         <label>Total deviation: {{delta}}</label>
