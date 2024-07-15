@@ -1,6 +1,10 @@
 <div class="parent">
     <div class="wrapper">
-        <input type="range" min="0" max="100" value="0" [disabled]="enabled ? null : 'disabled'" (input)="changeValue(+sliderView.value)" #sliderView />
+        <input type="range" min="0" [max]="maxRange" value="0" 
+            [step]="sliderStep" 
+            [style.--sliderStep]="sliderStep ? (sliderStep+'%') : null"
+            [disabled]="enabled ? null : 'disabled'"
+            (input)="changeValue(+sliderView.value)" #sliderView />
     </div>
 </div>
 <div class="sliderValue">

@@ -1,11 +1,11 @@
 <div class="sliders">
-    <app-slider class="slider" [enabled]="!isGameOver" #slider0></app-slider>
-    <app-slider class="slider" [enabled]="!isGameOver" #slider1></app-slider>
-    <app-slider class="slider" [enabled]="!isGameOver" #slider2></app-slider>
+    <app-slider class="slider" [enabled]="!isGameOver" [steps]="sidersSteps" [maxRange]="MAX_SLIDERS_RANGE" #slider0></app-slider>
+    <app-slider class="slider" [enabled]="!isGameOver" [steps]="sidersSteps" [maxRange]="MAX_SLIDERS_RANGE" #slider1></app-slider>
+    <app-slider class="slider" [enabled]="!isGameOver" [steps]="sidersSteps" [maxRange]="MAX_SLIDERS_RANGE" #slider2></app-slider>
 </div>
 <div class="buttons">
     <div class="button">
-        <button [disabled]="isGameOver" (click)="calculate()" class="btnGuess">GUESS!</button>
+        <button [disabled]="isGameOver" (click)="calculate()" class="btnGuess">Guess!</button>
     </div>
     <div class="result">
         <label>Total deviation: {{delta}}</label>
