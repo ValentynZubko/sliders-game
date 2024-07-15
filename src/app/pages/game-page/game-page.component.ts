@@ -10,11 +10,15 @@ import { SliderComponent } from "../../ui/slider/slider.component";
 })
 export class GamePageComponent {
 
+  readonly MAX_SLIDERS_RANGE = 100;
+
   readonly MAX_TRIES = 20;
   readonly ALMOST_WIN_DELTA = 3;
-  
+
   readonly BASE_WIN_AWARD = 10;
   readonly BASE_LOSE = 1;
+
+  sidersSteps: number = 0;
 
   isGameOver: boolean = false;
   triesCounter: number = 0;
@@ -34,9 +38,15 @@ export class GamePageComponent {
   }
 
   ngOnInit() {
-    this.randomNumber0 = Math.floor(Math.random() * 100);
-    this.randomNumber1 = Math.floor(Math.random() * 100);
-    this.randomNumber2 = Math.floor(Math.random() * 100);
+    if (this.sidersSteps <= 1) {
+      this.randomNumber0 = Math.floor(Math.random() * this.MAX_SLIDERS_RANGE);
+      this.randomNumber1 = Math.floor(Math.random() * this.MAX_SLIDERS_RANGE);
+      this.randomNumber2 = Math.floor(Math.random() * this.MAX_SLIDERS_RANGE);
+    } else {
+      this.randomNumber0 = (this.MAX_SLIDERS_RANGE / this.sidersSteps) * Math.floor(Math.random() * (this.sidersSteps + 1));
+      this.randomNumber1 = (this.MAX_SLIDERS_RANGE / this.sidersSteps) * Math.floor(Math.random() * (this.sidersSteps + 1));
+      this.randomNumber2 = (this.MAX_SLIDERS_RANGE / this.sidersSteps) * Math.floor(Math.random() * (this.sidersSteps + 1));
+    }
   }
 
   calculate() {
