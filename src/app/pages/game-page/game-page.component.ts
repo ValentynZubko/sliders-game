@@ -10,7 +10,11 @@ import { SliderComponent } from "../../ui/slider/slider.component";
 })
 export class GamePageComponent {
 
-  readonly MAX_TRIES = 5;
+  readonly MAX_TRIES = 20;
+  readonly ALMOST_WIN_DELTA = 3;
+  
+  readonly BASE_WIN_AWARD = 10;
+  readonly BASE_LOSE = 1;
 
   isGameOver: boolean = false;
   triesCounter: number = 0;
@@ -25,14 +29,14 @@ export class GamePageComponent {
   @ViewChild("slider1") slider1!: SliderComponent;
   @ViewChild("slider2") slider2!: SliderComponent;
 
+  get triesLeft() {
+    return this.MAX_TRIES - this.triesCounter;
+  }
+
   ngOnInit() {
     this.randomNumber0 = Math.floor(Math.random() * 100);
     this.randomNumber1 = Math.floor(Math.random() * 100);
     this.randomNumber2 = Math.floor(Math.random() * 100);
-
-    console.log(this.randomNumber0);
-    console.log(this.randomNumber1);
-    console.log(this.randomNumber2);
   }
 
   calculate() {
@@ -43,7 +47,7 @@ export class GamePageComponent {
 
     this.triesCounter++;
 
-    if (this.triesCounter >= this.MAX_TRIES) {
+    if (this.triesCounter >= this.MAX_TRIES || this.delta === 0) {
       this.isGameOver = true;
     }
   }

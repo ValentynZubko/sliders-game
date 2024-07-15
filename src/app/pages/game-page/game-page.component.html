@@ -5,17 +5,29 @@
 </div>
 <div class="buttons">
     <div class="button">
-        <button [disabled]="isGameOver" (click)="calculate()">Угадать!</button>
+        <button [disabled]="isGameOver" (click)="calculate()">GUESS!</button>
     </div>
     <div class="result">
-        <label>Общее отклонение: {{delta}}</label>
+        <label>Total deviation: {{delta}}</label>
     </div>
     <div class="tries">
-        <label>Осталось попыток: {{MAX_TRIES - triesCounter}}</label>
+        <label>Attempts left: {{triesLeft}}</label>
     </div>
-    <div class="randoms">
+    <div class="endRound">
         @if (isGameOver) {
-            <label>Загаданые значения: {{randomNumber0}}, {{randomNumber1}}, {{randomNumber2}}</label>
+            @if (delta === 0) {
+                @if (triesLeft > 0) {
+                    <label>You win ${{BASE_WIN_AWARD}} + ${{triesLeft}} = ${{triesLeft + BASE_WIN_AWARD}}. Congratulations!</label>
+                } @else {
+                    <label>You win ${{BASE_WIN_AWARD}}. Congratulations!</label>
+                }
+            } @else if (delta <= ALMOST_WIN_DELTA) {
+                <label>Unfortunately, you lost, but were close to winning!</label>
+            } @else {
+                <label>You lose ${{BASE_LOSE}} (((</label>
+            }
+            <label>Picked values: {{randomNumber0}}, {{randomNumber1}}, {{randomNumber2}}</label>
+            <label>Let's guess again! Good luck!</label>
         }
     </div>
 </div>
