@@ -1,7 +1,13 @@
 <div class="main">
   <div class="header">
-    <h1 align="center">Sliders Game</h1>
-    <p align="center">Guess what 3 values ​​I picked on sliders!</p>
+    <div class="logo">
+      <h1 align="center">Sliders Game</h1>
+    </div>
+    <div class="settings">
+      <button class="btnSettings" (click)="openSettings()">
+        <img class="btnImg" src="/assets/icons/settings-icon.svg" alt="settings">
+      </button>
+    </div>
   </div>
   
   <router-outlet />
