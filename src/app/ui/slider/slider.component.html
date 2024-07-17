@@ -2,7 +2,7 @@
     <div class="wrapper">
         <input type="range" min="0" [max]="maxRange" value="0" 
             [step]="sliderStep" 
-            [style.--sliderStep]="sliderStep ? (sliderStep+'%') : null"
+            [style.--slidersStep]="sliderStep ? (sliderStep+'%') : null"
             [disabled]="enabled ? null : 'disabled'"
             (input)="changeValue(+sliderView.value)" #sliderView />
     </div>

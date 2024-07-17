@@ -1,6 +1,9 @@
 :root {
-    --sliderStep: 100%;
+    --slidersStep: 100%;
     --slidersContrast: 0.4;
+    --slidersWidth: 25vw;
+    --slidersHeight: 20rem;
+    --slidersBorderRadius: 0rem;
 }
 
 :host {
