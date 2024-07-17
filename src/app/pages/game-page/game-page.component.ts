@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { SliderComponent } from "../../ui/slider/slider.component";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-game-page',
@@ -17,6 +18,8 @@ export class GamePageComponent {
 
   readonly BASE_WIN_AWARD = 10;
   readonly BASE_LOSE = 1;
+
+  cookieServise = inject(CookieService);
 
   sidersSteps: number = 0;
 
@@ -38,6 +41,12 @@ export class GamePageComponent {
   }
 
   ngOnInit() {
+    if (this.cookieServise.check("savedSlidersSteps")) {
+      this.sidersSteps = +this.cookieServise.get("savedSlidersSteps");
+    } else {
+      this.cookieServise.set("savedSlidersSteps", this.sidersSteps.toString());
+    }
+
     if (this.sidersSteps <= 1) {
       this.randomNumber0 = Math.floor(Math.random() * this.MAX_SLIDERS_RANGE);
       this.randomNumber1 = Math.floor(Math.random() * this.MAX_SLIDERS_RANGE);
@@ -60,5 +69,9 @@ export class GamePageComponent {
     if (this.triesCounter >= this.MAX_TRIES || this.delta === 0) {
       this.isGameOver = true;
     }
+  }
+
+  refresh() {
+    window.location.reload();
   }
 }
