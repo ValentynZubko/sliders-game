@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Settings</h2>
+<mat-dialog-content class="mat-typography">
+  <label for="steps">Amount of slider steps:</label>
+  <input type="number" name="steps" max="50" min="0" #stepsInput>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="primary" (click)="save(+stepsInput.value)">
+     Save
+  </button>
+  <button mat-button color="primary" (click)="close()">
+    Cancel
+ </button>
+</mat-dialog-actions>
